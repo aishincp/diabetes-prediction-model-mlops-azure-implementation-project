@@ -12,3 +12,14 @@ This project demonstrates the foundational principles of MLOps by building and d
    * **Azure Data Factory (data-factory-diabetes):** Used for **Extract, Transform, Load (ETL)** operations. **A pipeline was created in ADF to ingest data from Azure Blob Storage container ('diabetes-raw-data') and make it available within Azure ML workspace**. The processed dataset is represented as 'diabetes_processed_dataset' within ADF.
    * **Azure ML Workspace (diabetes-ml-ws):** This is the central hub for model training and deployment.
        * **Data Loading:** The dataset, now accessible through ADF pipeline, was loaded into the ML Workspace. The line: ``` dataset = Dataset.get_by_name(ws, name='diabetes_data')``` retrieves the dataset.  The name 'diabetes-data' corresponds to how you registered the dataset *within the ML Workspace*. It doesn't necessarily have to be the same as the name in Blob Storage or ADF, though it often is for clarity. The key is that the pipeline in ADF makes the data available in the ML Workspace and registers it there with the name 'diabetes-data'.
+      * **Model Training:** A **Linear Regression** model was trained using the loaded dataset. The 'train.ipynb' notebook in the Workspace was used for this purpose, leveraging libraries like ```azureml.core, scikit-learn, pandas, and joblib.```
+      * **Model Saving:** The trained model was saved usign ```joblib``` as ```model.pkl```
+      * **Model Registration:** The model was registered in the ML workspace with path ```model.pkl```, name ```'diabetes-lr'```, and tag ```{"framework": "scikit-learn"}```.
+      * **Custom Environment:** A custom environment named ```env``` was created to manage the required Python packages for model training and deployment.
+      * **Model Deployment:** The model was deployed to **Azure Container Instances (ACI)**. This process automatically created an Azure Container Registry to store the Docker image of the deplyed model.
+      * **Model Testing:** The deployment model was tested in 'test.ipynb' notebook to verify correct predictions.
+      * Scoring Script:** This script was created to handle incoming prediction requests for the deployed model.
+
+* **Deployment:** The model was deplas a containerized web service to Azure Container Instance (ACI). This created a Docker image of the model & deplyed it to ACI, making it accessible for making predictions.
+
+#### This project covers the core aspects of the MLOps Level 0, including **data ingestion, model training, and deployment.** It establishes a basic MLOps pipeline on Azure, demonstrating an understanding of the fundamental steps involved in the machine learning lifecycle.
