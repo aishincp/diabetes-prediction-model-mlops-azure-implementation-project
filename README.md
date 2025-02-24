@@ -1,6 +1,9 @@
 # Diabetes Prediction Model Deployment on Azure (MLOps Level 0)
 
-This project demonstrates the foundational principles of MLOps by building and deploying a diabetes prediction model on the Azure cloud platform.
+This project demonstrates the foundational principles of MLOps by building and deploying a diabetes prediction model on Azure Cloud Services.
+
+![FlowChart](https://github.com/user-attachments/assets/5e002f23-a472-477f-a129-0353c039cd2f)
+
 
 ## Project Overview:
 
